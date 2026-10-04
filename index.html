@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rabin Thapa — Data Scientist & Machine Learning Engineer based in Busan, South Korea. Portfolio, projects, skills and freelance contact.">
+  <meta name="theme-color" content="#070b14">
+  <title>Rabin Thapa — Data Scientist & ML Engineer</title>
+
+  <style>
+    :root {
+      --bg: #070b14;
+      --bg-soft: #0b1220;
+      --panel: rgba(14, 22, 38, .72);
+      --panel-solid: #0e1626;
+      --text: #eef4ff;
+      --muted: #9ba9bd;
+      --line: rgba(255,255,255,.10);
+      --accent: #72e6ff;
+      --accent-2: #9b8cff;
+      --good: #7df2bd;
+      --shadow: 0 24px 70px rgba(0,0,0,.35);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(114,230,255,.10), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(155,140,255,.10), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(125,242,189,.06), transparent 30%),
+        var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+      z-index: -2;
+    }
+
+    #glow {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(114,230,255,.10), transparent 68%);
+      z-index: -1;
+      transition: left .08s linear, top .08s linear;
+    }
+
+    .container { width: min(var(--max), calc(100% - 36px)); margin: 0 auto; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(7,11,20,.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(114,230,255,.45);
+      border-radius: 10px;
+      background: rgba(114,230,255,.07);
+      color: var(--accent);
+      font-size: .9rem;
+    }
+
+    .nav-links { display: flex; gap: 22px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: .9rem; transition: .2s ease; }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      padding: 10px 15px;
+      border: 1px solid rgba(114,230,255,.28);
+      border-radius: 12px;
+      color: var(--accent) !important;
+      background: rgba(114,230,255,.06);
+    }
+
+    section { padding: 105px 0; scroll-margin-top: 70px; }
+
+    .hero {
+      min-height: calc(100vh - 70px);
+      display: grid;
+      align-items: center;
+      padding-top: 75px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.035);
+      font-size: .78rem;
+      margin-bottom: 24px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--good);
+      box-shadow: 0 0 14px rgba(125,242,189,.7);
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 7vw, 6.5rem);
+      line-height: .94;
+      letter-spacing: -.065em;
+      max-width: 900px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, var(--text) 15%, var(--accent) 55%, var(--accent-2) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      margin: 27px 0 31px;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 47px;
+      padding: 0 18px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+      font-size: .9rem;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); border-color: rgba(114,230,255,.4); }
+
+    .btn-primary {
+      background: var(--text);
+      color: #07101b;
+      border-color: var(--text);
+    }
+
+    .btn-ghost { background: rgba(255,255,255,.035); color: var(--text); }
+
+    .hero-card {
+      position: relative;
+      min-height: 420px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(145deg, rgba(20,31,51,.85), rgba(8,13,24,.65));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      top: -100px;
+      right: -80px;
+      background: rgba(114,230,255,.13);
+      filter: blur(25px);
+    }
+
+    .avatar {
+    width: 112px;
+    height: 112px;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.15);
+    background: linear-gradient(
+        135deg,
+        rgba(114,230,255,.16),
+        rgba(155,140,255,.16)
+    );
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+    
+
+    .mini-label {
+      color: var(--accent);
+      font-size: .73rem;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-weight: 800;
+    }
+
+    .hero-card h2 { margin: 7px 0 7px; font-size: 1.55rem; }
+    .hero-card p { color: var(--muted); }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      padding: 15px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.025);
+    }
+
+    .stat strong { display: block; font-size: 1.05rem; }
+    .stat span { color: var(--muted); font-size: .76rem; }
+
+    .section-head { margin-bottom: 35px; }
+    .section-kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-weight: 800;
+      font-size: .72rem;
+      margin-bottom: 9px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -.05em;
+      line-height: 1;
+    }
+
+    .section-head p { color: var(--muted); max-width: 680px; margin-top: 14px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 27px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(15px);
+    }
+
+    .panel h3 { margin-bottom: 12px; }
+    .panel p { color: var(--muted); }
+
+    .service-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .service {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .service span:last-child { color: var(--muted); font-size: .8rem; text-align: right; }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 330px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(17,28,48,.8), rgba(10,15,26,.8));
+      overflow: hidden;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(114,230,255,.35);
+      box-shadow: 0 25px 65px rgba(0,0,0,.32);
+    }
+
+    .project.featured { grid-column: span 2; min-height: 360px; }
+
+    .project-number {
+      color: rgba(255,255,255,.35);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .15em;
+    }
+
+    .project h3 { font-size: 1.45rem; margin: 13px 0 9px; letter-spacing: -.03em; }
+    .project p { color: var(--muted); max-width: 680px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+    .tag {
+      border: 1px solid var(--line);
+      padding: 5px 9px;
+      border-radius: 999px;
+      color: #c5d1e1;
+      font-size: .72rem;
+      background: rgba(255,255,255,.025);
+    }
+
+    .project-footer {
+      margin-top: auto;
+      padding-top: 23px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .project-link { color: var(--accent); font-weight: 800; font-size: .86rem; }
+    .project-link.muted { color: var(--muted); cursor: default; }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .skill {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .skill strong { display: block; font-size: .9rem; }
+    .skill span { color: var(--muted); font-size: .74rem; }
+
+    .contact {
+      text-align: center;
+      padding-bottom: 75px;
+    }
+
+    .contact-box {
+      padding: clamp(35px, 6vw, 70px);
+      border: 1px solid rgba(114,230,255,.20);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(114,230,255,.09), transparent 45%),
+        rgba(14,22,38,.78);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h2 {
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      letter-spacing: -.06em;
+      line-height: .95;
+      margin-bottom: 18px;
+    }
+
+    .contact-box p { color: var(--muted); max-width: 640px; margin: 0 auto 25px; }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    .contact-links a {
+      padding: 10px 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: #d8e3f2;
+      background: rgba(255,255,255,.025);
+      font-size: .82rem;
+      transition: .2s ease;
+    }
+
+    .contact-links a:hover { border-color: rgba(114,230,255,.38); color: var(--accent); }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 23px 0;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .hero-card { min-height: auto; }
+      .skill-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 680px) {
+      .container { width: min(100% - 24px, var(--max)); }
+      section { padding: 75px 0; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { padding-top: 45px; }
+      h1 { font-size: clamp(3rem, 16vw, 5rem); }
+      .project-grid { grid-template-columns: 1fr; }
+      .project.featured { grid-column: span 1; }
+      .skill-grid { grid-template-columns: 1fr 1fr; }
+      .service { flex-direction: column; gap: 4px; }
+      .service span:last-child { text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="glow"></div>
+
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Rabin Thapa home">
+        <span class="brand-mark">RT</span>
+        <span>Rabin Thapa</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#skills">Skills</a>
+        <a class="nav-cta" href="mailto:rvei9937@gmail.com?subject=Project%20Inquiry%20for%20Rabin%20Thapa">Let's work</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">
+            <span class="status-dot"></span>
+            Open to data, AI/ML & freelance projects
+          </div>
+
+          <h1>
+            Turning <span class="gradient-text">data into useful systems.</span>
+          </h1>
+
+          <p class="hero-copy">
+            I'm Rabin Thapa, a Data Scientist & Machine Learning Engineer based in Busan, South Korea.
+            I build practical data products, AI-assisted tools and analytical workflows that turn messy
+            information into decisions people can actually use.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">Explore my work ↓</a>
+            <a class="btn btn-ghost" href="mailto:rvei9937@gmail.com?subject=Freelance%20Project%20Inquiry">Start a project ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/Rabin378" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal" aria-label="Profile summary">
+          <div class="avatar">
+    <img src="images/profile.jpg" alt="Rabin Thapa">
+</div>
+          
+          <h2>Data Science × ML Engineering</h2>
+          <p>Python-first, business-focused, continuously building.</p>
+
+          <div class="stat-grid">
+            <div class="stat">
+              <strong>Busan</strong>
+              <span>South Korea</span>
+            </div>
+            <div class="stat">
+              <strong>Python</strong>
+              <span>Core workflow</span>
+            </div>
+            <div class="stat">
+              <strong>AI / ML</strong>
+              <span>Primary direction</span>
+            </div>
+            <div class="stat">
+              <strong>Freelance</strong>
+              <span>Project-ready</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">01 / About</div>
+          <h2>Build useful things, not just impressive demos.</h2>
+          <p>
+            My portfolio is intentionally focused on work that connects technical implementation
+            with a practical outcome — analysis, automation, AI-assisted decision support and software systems.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="panel reveal">
+            <h3>What I bring</h3>
+            <p>
+              A growing data/AI engineering skill set combined with hands-on software coursework and
+              real project building. I enjoy taking a problem from raw data or requirements through
+              implementation, testing and a usable final result.
+            </p>
+
+            <div class="service-list">
+              <div class="service">
+                <span>Data analysis & visualization</span>
+                <span>Python · pandas · matplotlib</span>
+              </div>
+              <div class="service">
+                <span>AI / ML prototypes</span>
+                <span>Python · NLP · ML workflows</span>
+              </div>
+              <div class="service">
+                <span>Business-focused analytics</span>
+                <span>Insights · KPIs · decisions</span>
+              </div>
+              <div class="service">
+                <span>Software & academic systems</span>
+                <span>C++ · OOP · HTML/CSS · PHP</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel reveal">
+            <h3>Freelance focus</h3>
+            <p>
+              For freelance work, I am positioning around small-to-medium projects where a client needs
+              analysis, automation, a data workflow, an AI/ML prototype, a dashboard-ready dataset,
+              or a technical implementation with clear documentation.
+            </p>
+
+            <div class="service-list">
+              <a class="service" href="mailto:rvei9937@gmail.com?subject=Data%20Analysis%20Project">
+                <span>Data analysis</span><span>Request a quote →</span>
+              </a>
+              <a class="service" href="mailto:rvei9937@gmail.com?subject=Machine%20Learning%20Project">
+                <span>ML / AI prototype</span><span>Request a quote →</span>
+              </a>
+              <a class="service" href="mailto:rvei9937@gmail.com?subject=Python%20Automation%20Project">
+                <span>Python automation</span><span>Request a quote →</span>
+              </a>
+              <a class="service" href="https://www.upwork.com/freelancers/~01292906b30c264e2c" target="_blank" rel="noopener noreferrer">
+                <span>Upwork profile</span><span>View profile ↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">02 / Selected work</div>
+          <h2>Projects with a reason to exist.</h2>
+          <p>
+            The featured projects are linked directly to the real public repositories. Academic projects
+            are included because they demonstrate software engineering fundamentals alongside the data/AI direction.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project featured reveal">
+            <span class="project-number">01 — FEATURED AI PROJECT</span>
+            <h3>AI Skill Gap Radar</h3>
+            <p>
+              A Python project that analyzes job postings, required skills, salary signals, and technology
+              trends to rank valuable skills, calculate a personalized skill-gap score, and recommend what
+              to learn next. It runs through both a CLI and a Streamlit dashboard.
+            </p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">Data Analysis</span>
+              <span class="tag">AI / ML</span>
+              <span class="tag">Plotly</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-link">Public GitHub repository</span>
+              <a class="btn btn-ghost" href="https://github.com/Rabin378/AI-Skill-Gap-Radar" target="_blank" rel="noopener noreferrer">Open project ↗</a>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">02 — DATA</span>
+            <h3>End-to-End E-Commerce Analytics</h3>
+            <p>
+              A runnable Python portfolio project that turns raw e-commerce transactions into business
+              decisions — showing a practical workflow from raw data to useful business insight.
+            </p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Data Analysis</span>
+              <span class="tag">Business Insights</span>
+              <span class="tag">Visualization</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-link">Public GitHub repository</span>
+              <a class="btn btn-ghost" href="https://github.com/Rabin378/end-to-end-e-commerce" target="_blank" rel="noopener noreferrer">Open project ↗</a>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">03 — DATA</span>
+            <h3>Sales Data Analysis with Python</h3>
+            <p>
+              A focused data analysis project for understanding sales patterns, extracting business
+              insights and visualizing trends with charts.
+            </p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">pandas</span>
+              <span class="tag">matplotlib</span>
+              <span class="tag">EDA</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-link">Public GitHub repository</span>
+              <a class="btn btn-ghost" href="https://github.com/Rabin378/sales-data-analysis-python" target="_blank" rel="noopener noreferrer">Open project ↗</a>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">04 — SOFTWARE</span>
+            <h3>University Course Registration System</h3>
+            <p>
+              A C++ OOP system with student course registration, admin management, authentication,
+              file handling and core object-oriented programming concepts.
+            </p>
+            <div class="tags">
+              <span class="tag">C++</span>
+              <span class="tag">OOP</span>
+              <span class="tag">File I/O</span>
+              <span class="tag">Authentication</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-link">Public GitHub repository</span>
+              <a class="btn btn-ghost" href="https://github.com/Rabin378/University-Course-Registration-System" target="_blank" rel="noopener noreferrer">Open project ↗</a>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">05 — SOFTWARE</span>
+            <h3>Book Management System</h3>
+            <p>
+              A C++ project demonstrating practical object-oriented design through classes,
+              encapsulation and composition.
+            </p>
+            <div class="tags">
+              <span class="tag">C++</span>
+              <span class="tag">OOP</span>
+              <span class="tag">Classes</span>
+              <span class="tag">Encapsulation</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-link">Public GitHub repository</span>
+              <a class="btn btn-ghost" href="https://github.com/Rabin378/Book-management-system" target="_blank" rel="noopener noreferrer">Open project ↗</a>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">06 — WEB</span>
+            <h3>HTML5 Inline Elements Project</h3>
+            <p>
+              A clean HTML5 project demonstrating semantic markup, inline elements and CSS-based UI design.
+            </p>
+            <div class="tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Semantic Web</span>
+            </div>
+            <div class="project-footer">
+              <span class="project-link">Public GitHub repository</span>
+              <a class="btn btn-ghost" href="https://github.com/Rabin378/html5-inline-elements-project" target="_blank" rel="noopener noreferrer">Open project ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">03 / Stack</div>
+          <h2>Technical foundation.</h2>
+          <p>
+            Skills are presented honestly as a developing professional stack rather than a list of
+            technologies claimed without project evidence.
+          </p>
+        </div>
+
+        <div class="skill-grid">
+          <div class="skill reveal"><strong>Python</strong><span>Primary data/AI language</span></div>
+          <div class="skill reveal"><strong>pandas</strong><span>Data manipulation & analysis</span></div>
+          <div class="skill reveal"><strong>Matplotlib</strong><span>Data visualization</span></div>
+          <div class="skill reveal"><strong>Machine Learning</strong><span>Applied learning path</span></div>
+          <div class="skill reveal"><strong>NLP / AI</strong><span>AI project direction</span></div>
+          <div class="skill reveal"><strong>C++</strong><span>OOP & systems coursework</span></div>
+          <div class="skill reveal"><strong>HTML / CSS</strong><span>Web interfaces</span></div>
+          <div class="skill reveal"><strong>Git / GitHub</strong><span>Version control & portfolio</span></div>
+          <div class="skill reveal"><strong>SQL</strong><span>Data career foundation</span></div>
+          <div class="skill reveal"><strong>Data Visualization</strong><span>Insight communication</span></div>
+          <div class="skill reveal"><strong>Problem Solving</strong><span>Algorithms & coursework</span></div>
+          <div class="skill reveal"><strong>Documentation</strong><span>Clear project communication</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div class="section-kicker">04 / Contact</div>
+          <h2>Have a data problem?<br><span class="gradient-text">Let's build the answer.</span></h2>
+          <p>
+            Tell me what you are trying to analyze, automate or build. I am open to freelance
+            data analysis, Python automation and AI/ML project conversations.
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:rvei9937@gmail.com">✉ Email</a>
+            <a href="tel:+821099735117">☎ +82 10 9973 5117</a>
+            <a href="https://github.com/Rabin378" target="_blank" rel="noopener noreferrer">⌘ GitHub</a>
+            <a href="https://www.linkedin.com/in/ra-vei-6059b928a/" target="_blank" rel="noopener noreferrer">in LinkedIn</a>
+            <a href="https://www.upwork.com/freelancers/~01292906b30c264e2c" target="_blank" rel="noopener noreferrer">↗ Upwork</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Rabin Thapa</span>
+      <span>Data Science · Machine Learning · AI · Busan, South Korea</span>
+    </div>
+  </footer>
+
+  <script>
+    const glow = document.getElementById("glow");
+    window.addEventListener("pointermove", (event) => {
+      glow.style.left = event.clientX + "px";
+      glow.style.top = event.clientY + "px";
+    });
+
+    const revealItems = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach((item) => observer.observe(item));
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
